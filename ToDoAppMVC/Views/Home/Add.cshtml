@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Add new task";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">Agregar tarea</h1>
+            <form asp-controller="Home" asp-action="Add" class="input-group mb-3">
+                <input type="text" name="taskName" class="form-control" placeholder="Añadir nueva tarea" aria-label="Nueva tarea" id="todo-input">
+                <button class="btn btn-primary" type="submit">Añadir</button>
+            </form>
+        </div>
+    </div>
+</div>
