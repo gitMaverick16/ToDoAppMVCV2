@@ -27,14 +27,12 @@ namespace ToDoAppMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(string taskName)
+        public IActionResult Add(CreateTaskViewModel task)
         {
-            var newTask = new TaskEntity()
+            if (!ModelState.IsValid)
             {
-                Id = 5,
-                Name = taskName
-            };
-            Tasks.Add(newTask);
+                return View(task);
+            }
             return RedirectToAction("Index");
         }
 

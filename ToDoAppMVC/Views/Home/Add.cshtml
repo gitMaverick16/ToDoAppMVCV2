@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CreateTaskViewModel
+
+@{
     ViewData["Title"] = "Add new task";
 }
 
@@ -6,10 +8,23 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="text-center mb-4">Agregar tarea</h1>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
             <form asp-controller="Home" asp-action="Add" class="input-group mb-3">
-                <input type="text" name="taskName" class="form-control" placeholder="Añadir nueva tarea" aria-label="Nueva tarea" id="todo-input">
-                <button class="btn btn-primary" type="submit">Añadir</button>
+                <div class="mb-3 d-flex w-100">
+                    @* <label asp-for="Name" class="form-label">Nombre</label> *@
+                    <input type="text" asp-for="Name" class="form-control" placeholder="Añadir nueva tarea">
+                    <button class="btn btn-primary" type="submit">Añadir</button>
+                </div>
+               <div>
+                   <span asp-validation-for="Name" class="text-danger"></span>
+               </div>
             </form>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
