@@ -1,18 +1,24 @@
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using ToDoAppMVC.Entities;
 using ToDoAppMVC.Models;
+using ToDoAppMVC.Services;
 
 namespace ToDoAppMVC.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITaskRepository _taskRepository;
         private List<TaskEntity> Tasks;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, ITaskRepository taskRepository)
         {
             _logger = logger;
+            _taskRepository = taskRepository;
             Tasks = GetTasks();
         }
 
@@ -33,6 +39,7 @@ namespace ToDoAppMVC.Controllers
             {
                 return View(task);
             }
+            _taskRepository.Add(task);
             return RedirectToAction("Index");
         }
 
@@ -50,22 +57,22 @@ namespace ToDoAppMVC.Controllers
                 new TaskEntity()
                 {
                     Id = 1,
-                    Name = "Estudiar React"
+                    Title = "Estudiar React"
                 },
                 new TaskEntity()
                 {
                     Id = 2,
-                    Name = "Estudiar SignalR"
+                    Title = "Estudiar SignalR"
                 },
                 new TaskEntity()
                 {
                     Id = 3,
-                    Name = "Estudiar Angular"
+                    Title = "Estudiar Angular"
                 },
                 new TaskEntity()
                 {
                     Id = 4,
-                    Name = "Estudiar MVC"
+                    Title = "Estudiar MVC"
                 }
             };
             return tasks;

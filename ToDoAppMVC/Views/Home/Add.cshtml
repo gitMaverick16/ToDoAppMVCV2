@@ -14,11 +14,11 @@
             <form asp-controller="Home" asp-action="Add" class="input-group mb-3">
                 <div class="mb-3 d-flex w-100">
                     @* <label asp-for="Name" class="form-label">Nombre</label> *@
-                    <input type="text" asp-for="Name" class="form-control" placeholder="Añadir nueva tarea">
+                    <input type="text" asp-for="Title" class="form-control" placeholder="Añadir nueva tarea">
                     <button class="btn btn-primary" type="submit">Añadir</button>
                 </div>
                <div>
-                   <span asp-validation-for="Name" class="text-danger"></span>
+                    <span asp-validation-for="Title" class="text-danger"></span>
                </div>
             </form>
         </div>
